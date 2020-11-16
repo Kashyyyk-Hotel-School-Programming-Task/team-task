@@ -2,47 +2,78 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <limits.h>
+#include <stdbool.h>
+
+bool rooms[6] = {true, true, true, true, true, true}; // Availability of rooms
+bool tables[4] = {true, true, true, true}; // Availability of tables
 
 char user_info[6][6][20];
+int guest_num = 0;
 
-void check_in(){
+int check_in(){
     srand(time(NULL)); // seed rng
 
     // init variables
-    char user_id[20];
     int rand_num = (rand() % 30 + 1);
     char rand_num_str[2];
+    char board[2];
 
     sprintf(rand_num_str, "%d", rand_num);   // make the number into string using sprintf function
-    
-    printf("%s",rand_num_str);
 
     // Ask user for inputs
     printf("What is your surname? : ");
-    scanf("%s", &user_id);
+    fflush(stdin); scanf("%s", &*user_info[guest_num][0]);
 
+    // ask num of guests
     printf("How many guests are in your group? : ");
-    scanf("%s", &user_info[1]);
-    int guests = strtonum(user_info[1]);
-    
-    // validate number of guests
-    switch(guests) {
+    fflush(stdin); scanf("%s", &*user_info[guest_num][1]);
+    int guests = atoi(user_info[guest_num][1]); // convert num of guests (string) to integer
 
+    // Validate num of guests
+    if(guests > 6 || guests < 0){
+        printf("Invalid input, guests must be below 6.\n");
+        strcpy(user_info[guest_num][1], ""); 
+        return 1; // return error
     }
 
+    // Ask board type
     printf("Which board type? (FB for full board, HB for half board, BB for bed and breakfast) : ");
-    scanf("%s", &user_info[1]);
+    fflush(stdin);scanf("%s", &*user_info[guest_num][2]);
+    strcpy(board, user_info[guest_num][2]);
 
-    strcat(user_id, rand_num_str); // concatenates surname and the random number into "user_id"
+    // validate board type
+    if(strcmp(board, "FB") != 0 && strcmp(board, "HB") != 0  && strcmp(board, "BB") != 0){
+        printf("Invalid input\n");
+        strcpy(user_info[guest_num][2], "");
+        return 1;
+    }
 
-    printf("Your Booking ID is: %s\n",user_id); // debug printf
+    // ask length of stay
+    printf("How long will you be staying with us (in days)? : ");
+    fflush(stdin); scanf("%s", &*user_info[guest_num][3]);
 
+    // Validate length of stay
+    if(atoi(user_info[guest_num][3]) < 0 || atoi(user_info[guest_num][3]) > 30){
+        printf("Invalid input, number too high or below 0.");
+        strcpy(user_info[guest_num][3], ""); 
+        return 1; // return error
+    }
+
+    printf("Would you like a daily wake-up call? (£5) (y for yes, n for no) : ");
+    fflush(stdin); scanf("%s", &*user_info[guest_num][4]);
+
+    strcat(user_info[guest_num][0], rand_num_str); // concatenates surname and the random number into "user_id"
+
+    printf("Your Booking ID is: %s\n", &*user_info[guest_num][0]);
+
+    guest_num++; // increment guest number
+
+    return 0; // return success
 }
 
 int main() { 
-    int userMenuChoice = 0;
-    int mainMenuCount = 0;  //Variable used for the main menu loop char userMenuChoice;//Input for the user to choose one of the 4 main options
+    char userMenuChoice = 0;
+    char mainMenuCount = 0;  //Variable used for the main menu loop char userMenuChoice;
 
     while (mainMenuCount == 0){  //Main menu will loop while the count remains unchanged
         printf("Welcome to the Kashyyyk Hotel\n"); //Greeting
@@ -51,7 +82,9 @@ int main() {
         switch (userMenuChoice) {  //Runs a particular part of the code depending on what the user input is
             case 'I':  //When "Check in" option is chosen
                 printf("I\n");  //Placeholder for the "Check In" subroutine
-                check_in();
+                while(check_in() != 0){ // Keep asking until 0 is returned.
+                    printf("Invalid input was returned, please try again. \n"); 
+                }
                 break;
             case 'B':  //When "Book a Dinner Table" option is chosen
                 printf("B\n");  //Placeholder for the "Book a Table" subroutine
