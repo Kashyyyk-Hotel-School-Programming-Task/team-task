@@ -7,8 +7,47 @@
 bool rooms[6] = {true, true, true, true, true, true}; // Availability of rooms
 bool tables[4] = {true, true, true, true}; // Availability of tables
 
-char user_info[6][6][20];
+char user_info[6][7][20];
 int guest_num = 0;
+
+int checkOut(){
+
+    int totalCost=0;
+    int wakeUpCost=0;
+    int lengthOfStay==user_info[guest_num][3];
+    int numGuests==user_info[guest_num][1];
+    int costOfBoard=0;
+
+    switch(user_info[guest_num][2]){
+        case 'FB':
+            costOfBoard=20*numGuests*lengthOfStay;
+                    printf("The total cost of your party's board is:%d",&costOfBoard);
+                    break;
+        case 'HB':
+            costOfBoard=15*numGuests*lengthOfStay;
+                    printf("The total cost of your party's board is:%d",&costOfBoard);
+                    break;
+        case 'BB':
+            costOfBoard=5*numGuests*lengthOfStay;
+                    printf("The total cost of your party's board is:%d",&costOfBoard);
+            break;
+        default:
+            printf("Something has gone horribly wrong\n");
+    }
+    switch(user_info[guest_num][4]){
+        case 'y':
+            wakeUpCost=5;
+            printf("You asked for daily wake up calls, so you have been charged £5");
+            break;
+        case 'n':
+            wakeUpCost=0;
+            break;
+        default:
+            printf("Something has gone horribly wrong\n");
+
+    }
+
+}
 
 int check_in(){
     srand(time(NULL)); // seed rng
@@ -58,6 +97,10 @@ int check_in(){
         strcpy(user_info[guest_num][3], ""); 
         return 1; // return error
     }
+
+    //ask guests age
+    printf("What is your age?:\n");
+    fflush(stdin); scanf("%d", &*user_info[guest_num][7]);
 
     printf("Would you like a daily wake-up call? (£5) (y for yes, n for no) : ");
     fflush(stdin); scanf("%s", &*user_info[guest_num][4]);
