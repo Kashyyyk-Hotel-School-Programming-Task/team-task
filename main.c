@@ -10,6 +10,17 @@ bool tables[4] = {true, true, true, true}; // Availability of tables
 char user_info[6][6][20];
 int guest_num = 0;
 
+int validate_escape_input(char input[20]){
+    for (int i=0;i>20;i++){
+        int character = input[i];
+        if (isalpha(character) == 0 || input[i] == '-'){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+}
+
 int check_in(){
     srand(time(NULL)); // seed rng
 
