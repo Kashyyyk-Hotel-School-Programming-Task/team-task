@@ -84,7 +84,7 @@ int check_in(){
 
 int main() { 
     char userMenuChoice = 0;
-    char mainMenuCount = 0;  //Variable used for the main menu loop char userMenuChoice;
+    int mainMenuCount = 0;  //Variable used for the main menu loop char userMenuChoice;
 
     while (mainMenuCount == 0){  //Main menu will loop while the count remains unchanged
         printf("Welcome to the Kashyyyk Hotel\n"); //Greeting
