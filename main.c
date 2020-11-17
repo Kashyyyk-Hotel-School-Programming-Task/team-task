@@ -7,7 +7,7 @@
 bool rooms[6] = {true, true, true, true, true, true}; // Availability of rooms
 bool tables[4] = {true, true, true, true}; // Availability of tables
 
-char user_info[6][6][20];//test
+char user_info[6][6][20];
 int guest_num = 0;
 
 int check_in(){
