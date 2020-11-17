@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-//test
+
 bool rooms[6] = {true, true, true, true, true, true}; // Availability of rooms
 bool tables[4] = {true, true, true, true}; // Availability of tables
 
