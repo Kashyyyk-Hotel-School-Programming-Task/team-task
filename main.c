@@ -10,31 +10,32 @@ bool tables[4] = {true, true, true, true}; // Availability of tables
 char user_info[6][7][20];
 int guest_num = 0;
 
-int checkOut(){
+int check_out(){
 
     int totalCost=0;
     int wakeUpCost=0;
-    int lengthOfStay==user_info[guest_num][3];
-    int numGuests==user_info[guest_num][1];
-    int costOfBoard=0;
+    int lengthOfStay = atoi(user_info[guest_num][3]); // atoi converts string to integer
+    int numGuests = atoi(user_info[guest_num][1]);
+    int costOfBoard = 0;
 
-    switch(user_info[guest_num][2]){
-        case 'FB':
+    switch(user_info[guest_num][2][0]){
+        case 'F':
             costOfBoard=20*numGuests*lengthOfStay;
-                    printf("The total cost of your party's board is:%d",&costOfBoard);
+                    printf("The total cost of your party's board is:%d",costOfBoard);
                     break;
-        case 'HB':
+        case 'H':
             costOfBoard=15*numGuests*lengthOfStay;
-                    printf("The total cost of your party's board is:%d",&costOfBoard);
+                    printf("The total cost of your party's board is:%d",costOfBoard);
                     break;
-        case 'BB':
+        case 'B':
             costOfBoard=5*numGuests*lengthOfStay;
-                    printf("The total cost of your party's board is:%d",&costOfBoard);
+                    printf("The total cost of your party's board is:%d",costOfBoard);
             break;
         default:
             printf("Something has gone horribly wrong\n");
+            printf("DEBUG: user_info[guest_num][2][0] = %c",user_info[guest_num][2][0]);
     }
-    switch(user_info[guest_num][4]){
+    switch (user_info[guest_num][4][0]){
         case 'y':
             wakeUpCost=5;
             printf("You asked for daily wake up calls, so you have been charged £5");
@@ -79,6 +80,9 @@ int check_in(){
     printf("Which board type? (FB for full board, HB for half board, BB for bed and breakfast) : ");
     fflush(stdin);scanf("%s", &*user_info[guest_num][2]);
     strcpy(board, user_info[guest_num][2]);
+    if ((board[0] != 'F' && board[0] != 'H' && board[0] != 'B') || board[1] != 'B'){ // First letter must be F, H or B, second letter must be B.
+        return 1;
+    }
 
     // validate board type
     if(strcmp(board, "FB") != 0 && strcmp(board, "HB") != 0  && strcmp(board, "BB") != 0){
@@ -100,7 +104,7 @@ int check_in(){
 
     //ask guests age
     printf("What is your age?:\n");
-    fflush(stdin); scanf("%d", &*user_info[guest_num][7]);
+    fflush(stdin); scanf("%c", &*user_info[guest_num][6]);
 
     printf("Would you like a daily wake-up call? (£5) (y for yes, n for no) : ");
     fflush(stdin); scanf("%s", &*user_info[guest_num][4]);
@@ -134,7 +138,9 @@ int main() {
                 break;
             case 'O':  //When "Check Out" option is chosen
                 printf("O\n");  //Placeholder for the "Check Out" subroutine
-                break;
+                check_out();
+            break;
+
             case 'Q':  //When "Quit" option is chosen it will go back to the greeting
                 break;
             case '!':
