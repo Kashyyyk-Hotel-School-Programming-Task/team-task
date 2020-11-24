@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/team_task.dir/main.c.o"
-  "team_task"
+  "CMakeFiles/team_task.dir/main.c.obj"
+  "libteam_task.dll.a"
+  "team_task.exe"
+  "team_task.exe.manifest"
   "team_task.pdb"
 )
 

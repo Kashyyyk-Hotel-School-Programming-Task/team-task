@@ -12,10 +12,40 @@ int guest_num = 0;
 
 int check_out(){
     int totalCost=0;
+    int roomCost=0;
     int wakeUpCost=0;
     int lengthOfStay = atoi(user_info[guest_num][3]); // atoi converts string to integer
     int numGuests = atoi(user_info[guest_num][1]);
     int costOfBoard = 0;
+    int room_prices[5] = {100,100,85,75,75,50};
+
+    switch(user_info[guest_num][7][0]){
+        case 1:
+            roomCost=room_prices[0]*lengthOfStay;
+            printf("Your room will cost:£ %d\n",roomCost);
+            break;
+        case 2:
+            roomCost=room_prices[1]*lengthOfStay;
+            printf("Your room will cost:£ %d\n",roomCost);
+            break;
+        case 3:
+            roomCost=room_prices[2]*lengthOfStay;
+            printf("Your room will cost:£ %d\n",roomCost);
+            break;
+        case 4:
+            roomCost=room_prices[3]*lengthOfStay;
+            printf("Your room will cost:£ %d\n",roomCost);
+            break;
+        case 5:
+            roomCost=room_prices[4]*lengthOfStay;
+            printf("Your room will cost:£ %d\n",roomCost);
+            break;
+        case 6:
+            roomCost=room_prices[5]*lengthOfStay;
+            printf("Your room will cost:£ %d\n",roomCost);
+            break;
+
+    }
 
     switch(user_info[guest_num][2][0]){
         case 'F':

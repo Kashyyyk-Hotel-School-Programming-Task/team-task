@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/var/home/joe/src/compsci/C/team-task/main.c" "/var/home/joe/src/compsci/C/team-task/cmake-build-debug/CMakeFiles/team_task.dir/main.c.o"
+  "N:/Documents/GitHub/team task/team-task/main.c" "N:/Documents/GitHub/team task/team-task/cmake-build-debug/CMakeFiles/team_task.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
