@@ -81,7 +81,7 @@ int check_out(){
 
     if(user_info[guest_num][6]>65) {
         roomCost = roomCost * 0.9;
-        printf("You qualify for a 10% discount on your room rate!\n");
+        printf("You qualify for a 10 percent discount on your room rate!\n");
     }
     else if(user_info[guest_num][6]<16){
         costOfBoard=costOfBoard*0.5;
