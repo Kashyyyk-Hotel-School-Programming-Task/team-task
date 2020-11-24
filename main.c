@@ -117,7 +117,7 @@ int check_in(){
     if (guests <= 2){ // If there are 2 or less guests they can choose all the rooms
         for (int i = 1; i < 7; i++){
             if (rooms[i] == true){
-                printf("%d: room %d\n", i, i);
+                printf("%d: room %d - £%d per night\n", i, i, room_prices[i-1]);
             }
         }
     }else{
@@ -128,13 +128,13 @@ int check_in(){
         }
     }
     printf("Enter the room number you want: ");
-    fflush(stdin); scanf("%c", &user_info[guest_num][7][0]);
+    fflush(stdin); scanf(" %c", &user_info[guest_num][7][0]);
 
     room_num = atoi(user_info[guest_num][7]);
-    if(rooms[room_num] == false || room_num > 6 || room_num < 1){
+    if(rooms[room_num] == false || room_num > 6 || room_num < 1){ // validate
         return 1;
     }else{
-        rooms[room_num] = false;
+        rooms[room_num] = false; // set availability of selected room to false
     }
 
     printf("Your Booking ID is: %s\n", &*user_info[guest_num][0]);
