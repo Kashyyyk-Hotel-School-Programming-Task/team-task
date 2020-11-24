@@ -78,8 +78,22 @@ int check_out(){
 
     }
 
+
+    if(user_info[guest_num][6]>65) {
+        roomCost = roomCost * 0.9;
+        printf("You qualify for a 10% discount on your room rate!\n");
+    }
+    else if(user_info[guest_num][6]<16){
+        costOfBoard=costOfBoard*0.5;
+        printf("You qualify for half price on your roomn cost!\n");
+    }
+    else{
+        printf("What on earth did you input");
+    }
+
+
     totalCost=roomCost+costOfBoard+wakeUpCost;
-    printf("ID:",user_info[guest_num][0]);
+    printf("ID: %c",user_info[guest_num][0]);
     printf("Your total bill to be paid is:£ %d",totalCost);
     return 0;
 }
