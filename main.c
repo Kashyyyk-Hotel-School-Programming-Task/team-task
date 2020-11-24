@@ -92,7 +92,7 @@ int check_in(){
     int room_num = 0;
     char rand_num_str[2];
     char board[2];
-    int room_prices[5] = {100,100,85,75,75,50};
+    int room_prices[6] = {100,100,85,75,75,50};
 
     sprintf(rand_num_str, "%d", rand_num);   // make the number into string using sprintf function
 
