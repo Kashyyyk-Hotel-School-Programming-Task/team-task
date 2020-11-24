@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/var/home/joe/src/compsci/C/team-task/main.c
+time.h
+-
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+stdbool.h
+-
+
