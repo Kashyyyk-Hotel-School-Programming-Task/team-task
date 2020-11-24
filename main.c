@@ -61,7 +61,7 @@ int check_in(){
 
     sprintf(rand_num_str, "%d", rand_num);   // make the number into string using sprintf function
 
-    // Ask user for inputs
+    // Ask user for surname
     printf("What is your surname? : ");
     fflush(stdin); scanf("%s", &*user_info[guest_num][0]);
 
@@ -81,9 +81,6 @@ int check_in(){
     printf("Which board type? (FB for full board, HB for half board, BB for bed and breakfast) : ");
     fflush(stdin);scanf("%s", &*user_info[guest_num][2]);
     strcpy(board, user_info[guest_num][2]);
-    if ((board[0] != 'F' && board[0] != 'H' && board[0] != 'B') || board[1] != 'B'){ // First letter must be F, H or B, second letter must be B.
-        return 1;
-    }
 
     // validate board type
     if(strcmp(board, "FB") != 0 && strcmp(board, "HB") != 0  && strcmp(board, "BB") != 0){
@@ -107,8 +104,20 @@ int check_in(){
     printf("What is your age?:\n");
     fflush(stdin); scanf("%c", &*user_info[guest_num][6]);
 
+    // validate guest age
+    if(atoi(user_info[guest_num][6]) < 1 || atoi(user_info[guest_num][6]) > 140){
+        printf("Invalid input, number too high or below 0.");
+        return 1; // return error
+    }
+
+    // ask for daily wakeup call
     printf("Would you like a daily wake-up call? (£5) (y for yes, n for no) : ");
     fflush(stdin); scanf("%s", &*user_info[guest_num][4]);
+    
+    // validate daily wakeup call
+    if (user_info[guest_num][4][0] != 'y' && user_info[guest_num][4][0] != 'n'){ // validation of wakeup call input
+        return 1;
+    }
 
     strcat(user_info[guest_num][0], rand_num_str); // concatenates surname and the random number into "user_id"
 
