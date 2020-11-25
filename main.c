@@ -19,7 +19,7 @@ int check_out(){
     int costOfBoard = 0;
     int room_prices[6] = {100,100,85,75,75,50};
 
-    switch(user_info[guest_num][8][0]){
+    switch(user_info[guest_num][7][0]){
         case 1:
             roomCost=room_prices[0]*lengthOfStay;
             printf("Your room will cost:£ %d\n",roomCost);
@@ -48,7 +48,7 @@ int check_out(){
             printf("something has gone horribly wrong");
     }
 
-    switch(user_info[guest_num][2][0]){
+    switch(*user_info[guest_num][2][0]){
         case 'F':
             costOfBoard=20*numGuests*lengthOfStay;
             printf("The total cost of your party's board is:%d",costOfBoard);
@@ -65,7 +65,7 @@ int check_out(){
             printf("Something has gone horribly wrong\n");
             printf("DEBUG: user_info[guest_num][2][0] = %c",user_info[guest_num][2][0]);
     }
-    switch (user_info[guest_num][4][0]){
+    switch (*user_info[guest_num][4][0]){
         case 'y':
             wakeUpCost=5;
             printf("You asked for daily wake up calls, so you have been charged £5");
@@ -79,11 +79,11 @@ int check_out(){
     }
 
 
-    if(user_info[guest_num][6]>65) {
+    if(*user_info[guest_num][6]>65) {
         roomCost = roomCost * 0.9;
         printf("You qualify for a 10 percent discount on your room rate!\n");
     }
-    else if(user_info[guest_num][6]<16){
+    else if(*user_info[guest_num][6]<16){
         costOfBoard=costOfBoard*0.5;
         printf("You qualify for half price on your roomn cost!\n");
     }
@@ -93,7 +93,7 @@ int check_out(){
 
 
     totalCost=roomCost+costOfBoard+wakeUpCost;
-    printf("ID: %c",user_info[guest_num][0]);
+    printf("ID: %s",user_info[guest_num][0]);
     printf("Your total bill to be paid is:£ %d",totalCost);
     return 0;
 }
