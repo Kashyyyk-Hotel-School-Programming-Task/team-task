@@ -11,6 +11,8 @@ char user_info[6][8][20];
 int guest_num = 0;
 
 int check_out(){
+    int guest_age = 0;
+    int room_num = 0;
     int totalCost=0;
     int roomCost=0;
     int wakeUpCost=0;
@@ -18,37 +20,14 @@ int check_out(){
     int numGuests = atoi(user_info[guest_num][1]);
     int costOfBoard = 0;
     int room_prices[6] = {100,100,85,75,75,50};
+    room_num = atoi(user_info[guest_num][7]);
 
-    switch(user_info[guest_num][7][0]){
-        case 1:
-            roomCost=room_prices[0]*lengthOfStay;
-            printf("Your room will cost:£ %d\n",roomCost);
-            break;
-        case 2:
-            roomCost=room_prices[1]*lengthOfStay;
-            printf("Your room will cost:£ %d\n",roomCost);
-            break;
-        case 3:
-            roomCost=room_prices[2]*lengthOfStay;
-            printf("Your room will cost:£ %d\n",roomCost);
-            break;
-        case 4:
-            roomCost=room_prices[3]*lengthOfStay;
-            printf("Your room will cost:£ %d\n",roomCost);
-            break;
-        case 5:
-            roomCost=room_prices[4]*lengthOfStay;
-            printf("Your room will cost:£ %d\n",roomCost);
-            break;
-        case 6:
-            roomCost=room_prices[5]*lengthOfStay;
-            printf("Your room will cost:£ %d\n",roomCost);
-            break;
-        default:
-            printf("something has gone horribly wrong");
-    }
+    // Calculate and print room price
+    roomCost = room_prices[room_num] * lengthOfStay;
+    printf("Room cost: %d\n", roomCost);
 
-    switch(*user_info[guest_num][2][0]){
+    // Calculate price of board
+    switch(user_info[guest_num][2][0]){
         case 'F':
             costOfBoard=20*numGuests*lengthOfStay;
             printf("The total cost of your party's board is:%d",costOfBoard);
@@ -65,7 +44,9 @@ int check_out(){
             printf("Something has gone horribly wrong\n");
             printf("DEBUG: user_info[guest_num][2][0] = %c",user_info[guest_num][2][0]);
     }
-    switch (*user_info[guest_num][4][0]){
+
+    // Add on 5 if guest asked for daily wakeup calls
+    switch (user_info[guest_num][4][0]){
         case 'y':
             wakeUpCost=5;
             printf("You asked for daily wake up calls, so you have been charged £5");
@@ -78,8 +59,9 @@ int check_out(){
 
     }
 
-
-    if(*user_info[guest_num][6]>65) {
+    // Add 10% discount if guest is over 65, 50% if under 16
+    guest_age = atoi(user_info[guest_num][6]);
+    if(*user_info[guest_num][6] > 65) {
         roomCost = roomCost * 0.9;
         printf("You qualify for a 10 percent discount on your room rate!\n");
     }
@@ -102,6 +84,7 @@ int check_in(){
     srand(time(NULL)); // seed rng
 
     // init variables
+    int room_capacity[6] = {4,4,4,2,2,2};
     int rand_num = (rand() % 30 + 1);
     int room_num = 0;
     char rand_num_str[2];
@@ -151,7 +134,7 @@ int check_in(){
 
     //ask guests age
     printf("What is your age?:\n");
-    fflush(stdin); scanf("%c", &*user_info[guest_num][6]);
+    fflush(stdin); scanf(" %c", &*user_info[guest_num][6]);
 
     // validate guest age
     if(atoi(user_info[guest_num][6]) < 1 || atoi(user_info[guest_num][6]) > 140){
@@ -161,7 +144,7 @@ int check_in(){
 
     // ask for daily wakeup call
     printf("Would you like a daily wake-up call? (£5) (y for yes, n for no) : ");
-    fflush(stdin); scanf("%s", &*user_info[guest_num][4]);
+    fflush(stdin); scanf(" %c", &*user_info[guest_num][4]);
     
     // validate daily wakeup call
     if (user_info[guest_num][4][0] != 'y' && user_info[guest_num][4][0] != 'n'){ // validation of wakeup call input
@@ -189,7 +172,7 @@ int check_in(){
     fflush(stdin); scanf(" %c", &user_info[guest_num][7][0]);
 
     room_num = atoi(user_info[guest_num][7]);
-    if(rooms[room_num] == false || room_num > 6 || room_num < 1){ // validate
+    if(rooms[room_num] == false || guests > room_capacity[room_num-1] || room_num > 6 || room_num < 1){ // validate
         return 1;
     }else{
         rooms[room_num] = false; // set availability of selected room to false
@@ -200,6 +183,10 @@ int check_in(){
     guest_num++; // increment guest number
 
     return 0; // return success
+}
+
+int book_table(){
+
 }
 
 int main() {

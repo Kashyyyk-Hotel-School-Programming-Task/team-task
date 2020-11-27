@@ -1,4 +1,4 @@
-# Install script for directory: /var/home/joe/src/compsci/C/team-task
+# Install script for directory: /home/joe/src/team-task
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/var/home/joe/src/compsci/C/team-task/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/joe/src/team-task/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
