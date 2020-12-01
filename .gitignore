@@ -1,3 +1,6 @@
 CMakeCache.txt
 .main.c.swp
 Makefile
+CMakeFiles
+cmake-build-debug
+cmake_install.cmake

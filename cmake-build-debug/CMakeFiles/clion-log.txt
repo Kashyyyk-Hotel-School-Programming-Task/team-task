@@ -1,4 +1,0 @@
-Cannot generate into N:\Documents\GitHub\teamtask1\team-task
-It is already used for project \var\home\joe\src\compsci\C\team-task
-
-Please either delete it manually or select another generation directory

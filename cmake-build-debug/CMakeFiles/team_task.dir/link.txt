@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\team_task.dir/objects.a
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\ar.exe cr CMakeFiles\team_task.dir/objects.a @CMakeFiles\team_task.dir\objects1.rsp
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\team_task.dir/objects.a -Wl,--no-whole-archive  -o team_task.exe -Wl,--out-implib,libteam_task.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\team_task.dir\linklibs.rsp

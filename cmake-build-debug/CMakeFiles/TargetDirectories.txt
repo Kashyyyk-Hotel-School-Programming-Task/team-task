@@ -1,3 +1,0 @@
-N:/Documents/GitHub/team task/team-task/cmake-build-debug/CMakeFiles/edit_cache.dir
-N:/Documents/GitHub/team task/team-task/cmake-build-debug/CMakeFiles/team_task.dir
-N:/Documents/GitHub/team task/team-task/cmake-build-debug/CMakeFiles/rebuild_cache.dir
